@@ -1,0 +1,34 @@
+#include<stdio.h>
+#include<string.h>
+#include<conio.h>
+int count(FILE *fptr,char word[]);
+int main()
+{
+	int result;
+	char word[20];
+	FILE *fptr;
+	fptr = fopen("D:\\akshay.txt","r");
+	printf("Enter the Word You Want to search:\n");
+	gets(word);
+	result = count(fptr,word);
+	printf("the word occurance in file is %d times\n",result);
+	fclose(fptr);
+	getch();
+}
+
+int count(FILE *fptr,char word[])
+{
+	int count = 0;
+	char str[1000000];
+	char *pos;
+	while((fgets(str,10000000,fptr))!=0)
+	{
+	 int i = 0;
+     while((pos = strstr(str+i,word))!= 0)
+	 {
+	  i = pos-str+1;
+	  count++;
+     }	
+	}
+	return count;
+}
