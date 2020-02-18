@@ -1,0 +1,39 @@
+#include<stdio.h>
+#include<conio.h>
+int main()
+{
+	float arr[20];
+	float avg;
+	int sum,i,j,l,p;
+
+while(1)
+{	
+     	printf("Enter the Length of Array:\n");
+     	scanf("%d",&l);
+    	printf("Enter the %d Element:\n",l);
+    	for(i=0;i<l;i++)
+    	scanf("%f",&arr[i]);
+        for(j=0;j<=l;j++)
+        {          
+           sum = 0;
+           printf("Enter The position you Want to delete\n");
+	       scanf("%d",&p);
+	       for(i=p-1;i<l-1;i++)
+            {
+    	      arr[i] = arr[i+1];
+            }
+        	for(i=0;i<l-1;i++)
+            {
+	        	sum += arr[i];
+            }
+           avg = (float)sum/(float)4;
+	       arr[i]= avg;
+        	for(i=0;i<l;i++)
+         	{
+	        	printf("%.1f\n",arr[i]);
+        	}
+	
+           }
+}
+
+}
