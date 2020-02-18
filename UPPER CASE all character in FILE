@@ -1,0 +1,23 @@
+#include<stdio.h>
+#include<conio.h>
+#include<string.h>
+#include<ctype.h>
+int main()
+{
+	FILE *fptr,*fptr1;
+	int i;
+	char j;
+	fptr = fopen("D:\\akshay.txt","r");
+	fptr1 = fopen("D:\\akshay12.txt","w");
+	while((j = fgetc(fptr)) != EOF)
+	{
+		if(islower(j))
+		{
+			j = j-32;
+		}
+		fputc(j,fptr1);
+	}
+	fclose(fptr);
+	fclose(fptr1);
+	getch();
+}
