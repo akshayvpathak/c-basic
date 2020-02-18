@@ -1,0 +1,63 @@
+//substring belong to string or not
+
+#include<stdio.h>
+#include<conio.h>
+#include<string.h>
+int checkindex(char str[],char str1[]);
+int length(char str[]);
+int main()
+{
+	char str[20];
+	char str1[20];
+	char *result= NULL,*akshay,i,m;
+	while(1)
+     	{
+	printf("\nEnter main string\n");
+	gets(str);
+	printf("Enter substring\n");
+	gets(str1);
+	m = length(str);
+	result = checkindex(str,str1);
+	if(result == -1)
+	printf("substring not found\n");
+	else
+		{
+            for(i=0;str[i] != '\0';i++)
+    		printf("%c",*(result++));
+	 	}
+	 	
+		 }
+}
+
+int length(char str[])
+{
+int n=0,i;
+	for(i=0;str[i] != '\0';i++)
+	{
+	n++;
+	}
+	return n;
+}
+
+int checkindex(char str[],char str1[])
+{
+	int i,j,k,l,m;
+	int *n=NULL;
+	m = length(str);
+	l = length(str1);
+	for(i=0;i<m;i++)
+	{
+		k = i;
+		for(j=0;j<l;j++)
+		{
+			if(str[k] != str1[j])
+			break;
+			k++;
+		}
+		if(j==l){
+		n = &str[i];
+		return n;
+		}
+	}
+	return -1;
+}
