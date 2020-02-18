@@ -1,0 +1,32 @@
+#include<stdio.h>
+#include<string.h>
+#include<conio.h>
+int main()
+{
+	char str[20],ch;
+	int i,j,k,n;
+	while(1)
+	{	
+	printf("Enter the string:");
+	gets(str);
+	printf("Enter the character:");
+    scanf("%c",&ch);
+	n = strlen(str);
+	for(i=0;i<n;i++)
+	{
+		if((str[i]== ch))
+	           {
+		        	for(k=i;k<n;k++)
+		        	{
+			      	   str[k] = str[k+1];
+		         	}	
+		         	i--;
+          
+	        	}
+	}
+	if(str[0] == '\0')
+	printf("empty string!!!");
+	else
+	printf("%s\n",str);
+	}
+}
