@@ -1,0 +1,94 @@
+#include<stdio.h>
+
+int Binary(int number);
+int Setbit(int number,int bit);
+int Resetbit(int number,int bit);
+int Togglebit(int number,int bit);
+int main()
+{
+ int binary,setbit,resetbit,togglebit;
+ int number,bit;
+ while(1)
+ {
+ printf(" Input any decimal number : \n");
+ scanf("%d",&number);
+ if(number>=0)
+ {
+ binary = Binary(number);
+ printf("\n The Binary value is : %d\n",binary);
+ printf("enter the bit you want to set\n");
+ scanf("%d",&bit);
+ if(bit>0)
+ {
+ setbit = Setbit(number,bit);
+ printf("the output after setting bit %d is : %d\n",bit,setbit);
+ number = setbit;
+ }
+ else
+ {
+ printf("invalid Input\n");
+ }
+ printf("enter the bit you want to reset\n");
+ scanf("%d",&bit);
+                                  
+ if(bit>0)
+ {
+ resetbit = Resetbit(number,bit);
+ printf("the output after resetting bit %d is : %d\n",bit,resetbit);
+ number = resetbit;
+ }
+ else
+ {
+ printf("invalid Input\n");
+ }
+ printf("enter the bit you want to toggle\n");
+ scanf("%d",&bit);
+ if(bit>0)
+ {
+ togglebit = Togglebit(number,bit);
+ printf("the output after toggling bit %d is : %d\n",bit,togglebit);
+ }
+ else
+ {
+ printf("invalid Input\n");
+ }
+ }
+ else
+ {
+ printf("invalid input");
+ }
+ }
+}
+
+int Binary(int number)
+{
+    int binary=0,remainder,f=1;
+    while(number != 0)
+    {
+         remainder = number % 2 ;
+         binary = binary + remainder * f ;
+         f = f * 10 ;
+         number = number / 2 ;
+    }
+    return binary;
+}
+
+
+int Setbit(int number,int bit)
+{
+    number = number | ((1<<(bit-1)));
+    return number;
+}
+
+
+int Resetbit(int number,int bit)
+{
+    number = number & ~((1<<(bit-1)));
+    return number;
+}
+
+int Togglebit(int number,int bit)
+{
+    number = number ^ ((1<<(bit-1)));
+    return number;
+}
