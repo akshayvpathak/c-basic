@@ -1,0 +1,194 @@
+#include<stdio.h>
+#include<conio.h>
+#include<string.h>
+static int n;
+//FILE *fptr;
+struct qualification
+{
+ char degree[10];
+ int percentage;
+ int year;
+};
+struct joining
+{
+ int date;
+ int month;
+ int year;	
+};
+struct employ
+{
+ char name[15];
+ char gender[6];
+ int salary,age;	
+ struct qualification s2;
+ struct joining doj;
+}s1[50];
+void add(struct employ s1[]);
+void search(struct employ s1[]);
+void Delete(struct employ s1[]);
+void record(struct employ s1[]);
+int main()
+{
+  int i,l=1,j;
+  //fptr = fopen("D:\\akshay.txt","a");
+  printf("Enter the total number of Employ:\n");
+  scanf("%d",&n);
+  printf("\n");
+  for(i=0;i<n;i++)
+  {                    
+  printf("Enter the %d Employ detail:\n",i+1);
+  printf("Enter the name:\n");
+  fflush(stdin); 
+  gets(s1[i].name);
+  printf("Enter the Age :\n");
+  scanf("%d",&s1[i].age);
+  printf("Enter the Gender:\n");
+  fflush(stdin); 
+  gets(s1[i].gender);
+  printf("Enter Highest Qualification :\n");
+  fflush(stdin); 
+  gets(s1[i].s2.degree);
+  printf("Enter the Percentage\n");
+  scanf("%d",&s1[i].s2.percentage);
+  printf("Enter the Year of Passing\n");
+  scanf("%d",&s1[i].s2.year);
+  printf("Enter the date of joining(DD/MM/YEAR):\n");
+  scanf("%d/%d/%d",&s1[i].doj.date,&s1[i].doj.month,&s1[i].doj.year);
+  printf("Enter the Salary:\n");
+  scanf("%d",&s1[i].salary);
+  printf("\n");	            
+  } 
+  while(l != 0)
+  {
+   printf("Enter\n1 For Add Employ\n2 For Delete Employ\n3 For Record Detail\n4 For search:\n5 for Exit\n");
+   scanf("%d",&j);
+   switch(j)
+   {
+   case 1:
+  	 add(s1);
+   	 break;
+   case 2:
+     Delete(s1);
+     break;
+   case 3:
+     record(s1);
+ 	 break;
+   case 4:
+     search(s1);
+     break;
+   case 5:
+   	 l = 0;
+     break;
+    }
+  }
+  //fclose(fptr);
+ getch();	
+}
+void add(struct employ s1[])
+{
+  printf("\n");
+  printf("Enter the name:\n");
+  fflush(stdin); 
+  gets(s1[n].name);
+  printf("Enter the Age :\n");
+  scanf("%d",&s1[n].age);
+  printf("Enter the Gender:\n");
+  fflush(stdin); 
+  gets(s1[n].gender);
+  printf("Enter Highest Qualification :\n");
+  gets(s1[n].s2.degree);
+  printf("Enter the Percentage\n");
+  scanf("%d",&s1[n].s2.percentage);
+  printf("Enter the Year of Passing\n");
+  scanf("%d",&s1[n].s2.year);
+  printf("Enter the date of joining(DD/MM/YEAR):\n");
+  scanf("%d/%d/%d",&s1[n].doj.date,&s1[n].doj.month,&s1[n].doj.year);
+  printf("Enter the Salary:\n");
+  scanf("%d",&s1[n].salary);
+  n++;  	                
+}
+void Delete(struct employ s1[])
+{
+	char str[10],ch;
+	int result,k,i;
+    printf("Enter the  employ name you want to delete record:\n");
+    fflush(stdin); 
+    gets(str);
+    k=0;
+    for(i=0;i<n;i++)
+    {
+      result = strcmp(str,s1[i].name);
+      if(result==0)
+      {  
+      
+       k++;
+       printf("Employ Record Found!!\n Are You Sure Press 'Y' for yes 'N' for no");
+       scanf("%c",&ch);
+       if(ch == 'y' || ch == 'Y')
+       {
+       	for(k=i;k<n;k++)
+        {
+        strcpy(s1[k].name,s1[k+1].name);
+        strcpy(s1[k].gender ,s1[k+1].gender);
+        s1[k].age = s1[k+1].age;
+        s1[k].salary = s1[k+1].salary;
+        }
+       }  
+       }
+      }
+       if(k == 0)
+       printf("Member Not Found!!\n");
+       if(ch == 'y' || ch == 'Y')
+       n--;
+}
+void search(struct employ s1[])
+	{
+	  char str[20];
+	  int result,k,i;
+	  printf("Enter the name you want to search:\n");
+	  fflush(stdin); 
+      gets(str);
+      k  = 0;
+      for(i=0;i<n;i++)
+      {
+     	result = strcmp(str,s1[i].name);
+     	if(result==0)
+	    {
+		  printf("Employ Record Found!!\nThe Detail of the Employ is :\n");
+   	      printf("Name   = %s\nAge    = %d\n",s1[i].name,s1[i].age);
+	      printf("Gender = %s\ndegree = %s\n",s1[i].gender,s1[i].s2.degree);
+          printf("         percentag   = %d\n         year        =  %d\n",s1[i].s2.percentage,s1[i].s2.year);
+          printf("doj    = %d/%d/%d\n",s1[i].doj.date,s1[i].doj.month,s1[i].doj.year);	 
+	      k++;   	
+        }
+       }   
+      if(k == 0)
+   	  printf("No Record Found!!\n");
+}
+
+void record(struct employ s1[])
+{
+	int i;
+    printf("Employ Detail:\n\n");
+    for(i=0;i<n;i++)
+    {            
+    printf("(%d)\n",i+1);
+    printf("Name       = %s\nAge        = %d\n",s1[i].name,s1[i].age);
+    printf("Gender     = %s\nEdu.Detail = %s\n",s1[i].gender,s1[i].s2.degree);
+    printf("            percentag = %d%%\n            year      =  %d\n",s1[i].s2.percentage,s1[i].s2.year);
+    printf("Salary         = %d\ndoj            = %d/%d/%d\n",s1[i].salary,s1[i].doj.date,s1[i].doj.month,s1[i].doj.year);
+    }
+   /*
+    fprintf(fptr,"Employ Detail:\n\n");
+    for(i=0;i<n;i++)
+    {            
+    fprintf(fptr,"(%d)\n",i+1);
+    fprintf(fptr,"Name       = %s\nAge        = %d\n",s1[i].name,s1[i].age);
+    fprintf(fptr,"Gender     = %s\nEdu.Detail = %s\n",s1[i].gender,s1[i].s2.degree);
+    fprintf(fptr,"             percentag = %d%%\n",s1[i].s2.percentage);
+    fprintf(fptr,"             year      =  %d\n",s1[i].s2.year);
+    fprintf(fptr,"Salary     = %d\n",s1[i].salary);
+    fprintf(fptr,"doj        = %d/%d/%d\n",s1[i].doj.date,s1[i].doj.month,s1[i].doj.year);
+    }
+    */
+}
