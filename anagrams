@@ -1,0 +1,40 @@
+#include<stdio.h>
+#include<conio.h>
+#include<string.h>
+void function(char str1[]);
+int main()
+{
+	char str1[50],str2[50];
+	while(1)
+	{
+	printf("Enter the First string\n");
+	gets(str1);
+	printf("Enter the second string\n");
+	gets(str2);
+	function(str1);
+	function(str2);
+	if(strcmp(str1,str2) == 0)
+	printf("the strings are anagrams\n");
+	else
+	printf("the strings are not anagrams\n");
+	}
+
+}
+
+void function(char str1[] )
+{
+    int i,j,c,n;
+    n = strlen(str1);
+    for(i=0;i<n;i++)
+    {
+        for(j=i+1;j<n;j++)
+        {
+            if(str1[i]>str1[j])
+            {
+             c = str1[i];
+             str1[i] = str1[j];
+             str1[j] = c;
+            }
+        }
+    }
+}
